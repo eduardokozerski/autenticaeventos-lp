@@ -3,11 +3,26 @@
   position: relative;
   overflow: hidden;
 }
+#eventos > .s-title {
+  margin-bottom: 5rem;
+}
 .eventos-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
   margin-top: 3rem;
+}
+.s-label.eventos-cidade {
+  margin-top: 1.4rem;
+  font-size: clamp(0.86rem, 1.6vw, 1.05rem);
+  letter-spacing: 0.32em;
+  opacity: 0.9;
+}
+.eventos-cidade + .eventos-grid {
+  margin-top: 1.2rem;
+}
+.eventos-grid + .eventos-cidade {
+  margin-top: 3.4rem;
 }
 .evento-card {
   background: var(--dark2);
@@ -51,6 +66,20 @@
   max-width: 180px;
   object-fit: contain;
   object-position: left;
+}
+.evento-logo-placeholder {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  min-width: 122px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 2px;
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
 }
 .evento-date {
   display: inline-flex;
@@ -419,6 +448,30 @@
   line-height: 1.75;
   margin: 1.5rem 0 3rem;
 }
+.contato-wrap .parceiros-subtitle {
+  font-size: clamp(0.86rem, 1.6vw, 1.05rem);
+  margin: 0 0 1.4rem;
+  opacity: 0.9;
+}
+.parceiros-logos {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1.1rem 1.3rem;
+  align-items: center;
+  justify-items: center;
+  max-width: 980px;
+  margin: 0 auto 2.6rem;
+}
+.parceiros-logos img {
+  height: 96px;
+  width: min(100%, 170px);
+  object-fit: contain;
+  object-position: center;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.28));
+}
+.parceiros-logos img:nth-child(11) {
+  grid-column: 3;
+}
 .contato-links {
   display: flex;
   flex-wrap: wrap;
@@ -470,5 +523,21 @@
   }
   .parcerias-grid {
     grid-template-columns: 1fr;
+  }
+  .contato-wrap .parceiros-subtitle {
+    margin-bottom: 1rem;
+  }
+  .parceiros-logos {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.9rem;
+    max-width: 460px;
+    margin-bottom: 2.2rem;
+  }
+  .parceiros-logos img {
+    height: 82px;
+    width: min(100%, 130px);
+  }
+  .parceiros-logos img:nth-child(11) {
+    grid-column: auto;
   }
 }

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fazendinha Viçosa – As Melhores Festas Universitárias</title>
+    <title>Autêntica Eventos – As Melhores Festas Universitárias</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
@@ -641,6 +641,7 @@
     <section id="eventos">
       <p class="s-label reveal">Agenda</p>
       <h2 class="s-title reveal"><em>Próximos Eventos</em></h2>
+      <p class="s-label eventos-cidade reveal reveal-delay-005">VIÇOSA</p>
       <div class="eventos-grid">
         <div class="evento-card reveal reveal-delay-005">
           <div class="evento-logo-wrap">
@@ -693,6 +694,37 @@
           <span class="btn-soon">Em breve</span>
         </div>
       </div>
+      <p class="s-label eventos-cidade reveal reveal-delay-012">UBÁ</p>
+      <div class="eventos-grid eventos-grid-uba">
+        <div class="evento-card reveal reveal-delay-012">
+          <div class="evento-logo-wrap">
+            <img
+              class="evento-logo"
+              src="/public/Logo-Calourada.png"
+              alt="Ícone Calourada das Atléticas"
+            />
+          </div>
+          <div class="evento-date">09/05</div>
+          <div class="evento-name">Calourada das Atléticas</div>
+          <p class="evento-desc">
+            Edição em Ubá com as atléticas no comando, energia alta e pista
+            lotada do início ao fim.
+          </p>
+          <span class="btn-soon">Em breve</span>
+        </div>
+        <div class="evento-card reveal reveal-delay-015">
+          <div class="evento-logo-wrap">
+            <span class="evento-logo-placeholder">Em breve</span>
+          </div>
+          <div class="evento-date">13/06</div>
+          <div class="evento-name">Brasileiragem</div>
+          <p class="evento-desc">
+            Novo encontro em Ubá com repertório nacional e experiência completa
+            para a galera.
+          </p>
+          <span class="btn-soon">Em breve</span>
+        </div>
+      </div>
     </section>
 
     <!-- VENDEDORES -->
@@ -722,7 +754,7 @@
 
       <p class="vend-disclaimer reveal reveal-delay-02">
         <strong
-          >✦ Vendedores verificados e autorizados pela Fazendinha Viçosa</strong
+          >✦ Vendedores verificados e autorizados pela Autêntica Eventos</strong
         ><br />
         Todos os vendedores acima são parceiros oficiais. Desconfie de quem não
         estiver nesta lista.
@@ -776,6 +808,52 @@
         <p class="reveal reveal-delay-008">
           Dúvidas sobre ingressos ou parcerias? Resposta rápida garantida.
         </p>
+        <p class="s-label parceiros-subtitle reveal reveal-delay-01">
+          NOSSOS PARCEIROS
+        </p>
+        <div class="parceiros-logos reveal reveal-delay-012">
+          <img
+            src="/public/LOGOS PARCEIROS/JONANTHAN OLIVEIRA.png"
+            alt="Parceiro Jonanthan Oliveira"
+          />
+          <img
+            src="/public/LOGOS PARCEIROS/LUAN BEAT.jpg"
+            alt="Parceiro Luan Beat"
+          />
+          <img
+            src="/public/LOGOS PARCEIROS/PLAY EVENTOS.JPG"
+            alt="Parceiro Play Eventos"
+          />
+          <img
+            src="/public/LOGOS PARCEIROS/SACOLÃO.png"
+            alt="Parceiro Sacolão"
+          />
+          <img
+            src="/public/LOGOS PARCEIROS/SANTA DOSE LOGO.png"
+            alt="Parceiro Santa Dose"
+          />
+          <img
+            src="/public/LOGOS PARCEIROS/VIA CAMPUS.png"
+            alt="Parceiro Via Campus"
+          />
+          <img
+            src="/public/LOGOS PARCEIROS/VIA CAMPUS(1).png"
+            alt="Parceiro Via Campus 2"
+          />
+          <img
+            src="/public/LOGOS PARCEIROS/cena-skate.png"
+            alt="Parceiro Cena Skate"
+          />
+          <img
+            src="/public/LOGOS PARCEIROS/madruga.png"
+            alt="Parceiro Madruga"
+          />
+          <img
+            src="/public/LOGOS PARCEIROS/vikings.png"
+            alt="Parceiro Vikings"
+          />
+          <img src="/public/LOGOS PARCEIROS/wegas.png" alt="Parceiro Wegas" />
+        </div>
         <div class="contato-links reveal reveal-delay-012">
           <a
             class="c-link wa"
@@ -811,10 +889,11 @@
     <!-- FOOTER -->
     <footer>
       <div class="footer-logo">
-        <img src="/public/logo-autentica.png" alt="Autêntica Fazendinha" />
+        <img src="/public/logo-autentica.png" alt="Autêntica Eventos" />
       </div>
       <span class="footer-copy"
-        >© 2025 Fazendinha Viçosa · Todos os direitos reservados.</span
+        >© <span id="footer-year"></span> Autêntica Eventos · Todos os direitos
+        reservados.</span
       >
       <a
         class="footer-ig"
@@ -836,6 +915,10 @@
         { threshold: 0.1 },
       );
       document.querySelectorAll(".reveal").forEach((r) => obs.observe(r));
+      const footerYear = document.querySelector("#footer-year");
+      if (footerYear) {
+        footerYear.textContent = String(new Date().getFullYear());
+      }
       const navToggle = document.querySelector(".nav-toggle");
       const navMobileMenu = document.querySelector("#nav-mobile-menu");
       if (navToggle && navMobileMenu) {
