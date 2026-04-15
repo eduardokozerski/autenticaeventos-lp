@@ -3,10 +3,876 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Autentica Eventos</title>
+    <title>Fazendinha Viçosa – As Melhores Festas Universitárias</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/public/sections.css" />
+    <style>
+      :root {
+        --gold: #ffffff;
+        --gold-light: #f2f2f2;
+        --gold-dark: #cfcfcf;
+        --black: #000000;
+        --dark: #080808;
+        --dark2: #101010;
+        --cream: #ffffff;
+        --muted: rgba(255, 255, 255, 0.62);
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--black);
+        color: var(--cream);
+        font-family: "Manrope", sans-serif;
+        overflow-x: hidden;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+        opacity: 0.4;
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.2rem 5vw;
+        background: linear-gradient(
+          180deg,
+          rgba(8, 8, 8, 0.96) 0%,
+          transparent 100%
+        );
+        backdrop-filter: blur(8px);
+      }
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+      .nav-links a {
+        color: var(--cream);
+        text-decoration: none;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        opacity: 0.65;
+        transition:
+          opacity 0.2s,
+          color 0.2s;
+      }
+      .nav-links a:hover {
+        opacity: 1;
+        color: var(--gold);
+      }
+      .nav-toggle {
+        display: none;
+        width: 42px;
+        height: 42px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 2px;
+        background: rgba(8, 8, 8, 0.88);
+        color: var(--cream);
+        cursor: pointer;
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .nav-toggle span,
+      .nav-toggle::before,
+      .nav-toggle::after {
+        display: block;
+        width: 18px;
+        height: 2px;
+        background: currentColor;
+        transition:
+          transform 0.2s ease,
+          opacity 0.2s ease;
+      }
+      .nav-toggle::before,
+      .nav-toggle::after {
+        content: "";
+        position: absolute;
+      }
+      .nav-toggle::before {
+        transform: translateY(-6px);
+      }
+      .nav-toggle::after {
+        transform: translateY(6px);
+      }
+      body.nav-open .nav-toggle span {
+        opacity: 0;
+      }
+      body.nav-open .nav-toggle::before {
+        transform: rotate(45deg);
+      }
+      body.nav-open .nav-toggle::after {
+        transform: rotate(-45deg);
+      }
+      .nav-mobile-menu {
+        display: none;
+      }
+
+      /* HERO */
+      #hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        padding: 8rem 5vw 5rem;
+      }
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse 75% 60% at 50% 42%,
+            rgba(255, 255, 255, 0.1) 0%,
+            transparent 65%
+          ),
+          var(--black);
+      }
+      .hero-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(255, 255, 255, 0.012) 2px,
+          rgba(255, 255, 255, 0.012) 4px
+        );
+      }
+      .hero-tag {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--gold);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 0.35rem 1rem;
+        border-radius: 2px;
+        margin-bottom: 2rem;
+        position: relative;
+        z-index: 1;
+        animation: fadeUp 0.6s ease both;
+      }
+      .hero-logo {
+        width: min(260px, 58vw);
+        margin-bottom: 2rem;
+        position: relative;
+        z-index: 1;
+        animation: fadeUp 0.6s 0.08s ease both;
+        filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.08));
+      }
+      .hero-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.7rem, 8.8vw, 6.2rem);
+        line-height: 0.95;
+        letter-spacing: 0.04em;
+        position: relative;
+        z-index: 1;
+        animation: fadeUp 0.6s 0.12s ease both;
+      }
+      .hero-title em {
+        font-style: italic;
+      }
+      .hero-title span {
+        color: var(--gold);
+        display: block;
+      }
+      .hero-sub {
+        font-size: clamp(0.95rem, 2vw, 1.15rem);
+        color: var(--muted);
+        margin-top: 1.5rem;
+        max-width: 460px;
+        line-height: 1.65;
+        position: relative;
+        z-index: 1;
+        animation: fadeUp 0.6s 0.18s ease both;
+      }
+      .hero-actions {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 2.5rem;
+        margin-bottom: 2.2rem;
+        position: relative;
+        z-index: 1;
+        animation: fadeUp 0.6s 0.24s ease both;
+      }
+      .btn-primary {
+        background: var(--gold);
+        color: var(--black);
+        padding: 0.85rem 2.4rem;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.95rem;
+        font-weight: 900;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        text-decoration: none;
+        border-radius: 2px;
+        transition: all 0.2s;
+        border: none;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+      }
+      .btn-primary::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.22),
+          transparent
+        );
+        transform: translateX(-100%);
+        transition: transform 0.4s ease;
+      }
+      .btn-primary:hover::after {
+        transform: translateX(100%);
+      }
+      .btn-primary:hover {
+        background: var(--gold-light);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(255, 255, 255, 0.3);
+      }
+      .btn-outline {
+        border: 1.5px solid rgba(255, 255, 255, 0.4);
+        color: var(--gold);
+        padding: 0.85rem 2.4rem;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.95rem;
+        font-weight: 900;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        text-decoration: none;
+        border-radius: 2px;
+        transition: all 0.2s;
+        margin-bottom: 2.2rem;
+      }
+      .btn-outline:hover {
+        background: rgba(255, 255, 255, 0.07);
+        border-color: var(--gold);
+        transform: translateY(-2px);
+      }
+      .hero-scroll {
+        position: absolute;
+        bottom: 2.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        color: rgba(255, 255, 255, 0.25);
+        font-size: 0.65rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        z-index: 1;
+        animation: fadeUp 0.6s 0.5s ease both;
+      }
+      .scroll-line {
+        width: 1px;
+        height: 48px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.55) 0%,
+          transparent 100%
+        );
+        animation: scrollLine 2.2s ease infinite;
+      }
+      @keyframes scrollLine {
+        0% {
+          transform: scaleY(0);
+          transform-origin: top;
+        }
+        50% {
+          transform: scaleY(1);
+          transform-origin: top;
+        }
+        51% {
+          transform: scaleY(1);
+          transform-origin: bottom;
+        }
+        100% {
+          transform: scaleY(0);
+          transform-origin: bottom;
+        }
+      }
+
+      /* TICKER */
+      .ticker-wrap {
+        overflow: hidden;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        padding: 0.75rem 0;
+      }
+      .ticker {
+        display: flex;
+        gap: 3rem;
+        animation: ticker 22s linear infinite;
+        white-space: nowrap;
+      }
+      .ticker span {
+        font-family: "Manrope", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 900;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--gold);
+        opacity: 0.7;
+      }
+      .ticker-dot {
+        color: var(--gold);
+        opacity: 0.3;
+      }
+      @keyframes ticker {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* SECTIONS COMMON */
+      section {
+        padding: 7rem 5vw;
+      }
+      .s-label {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 1rem;
+      }
+      .s-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+        line-height: 1;
+        letter-spacing: 0.03em;
+      }
+      .s-title em {
+        color: var(--gold);
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.75s ease,
+          transform 0.75s ease;
+      }
+      .reveal.vis {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-005 {
+        transition-delay: 0.05s;
+      }
+      .reveal-delay-008 {
+        transition-delay: 0.08s;
+      }
+      .reveal-delay-01 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-012 {
+        transition-delay: 0.12s;
+      }
+      .reveal-delay-015 {
+        transition-delay: 0.15s;
+      }
+      .reveal-delay-016 {
+        transition-delay: 0.16s;
+      }
+      .reveal-delay-02 {
+        transition-delay: 0.2s;
+      }
+      .center-block {
+        text-align: center;
+        margin-top: 1rem;
+      }
+      .btn-primary-vendedores {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-size: 1rem;
+        padding: 1.1rem 3rem;
+      }
+
+      /* FOOTER */
+      footer {
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        padding: 2.2rem 5vw;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .footer-logo img {
+        height: 72px;
+        opacity: 0.7;
+      }
+      .footer-copy {
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.2);
+        letter-spacing: 0.06em;
+      }
+      .footer-ig {
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: var(--gold);
+        text-decoration: none;
+        letter-spacing: 0.14em;
+        opacity: 0.5;
+        transition: opacity 0.2s;
+      }
+      .footer-ig:hover {
+        opacity: 1;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(22px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 860px) {
+        nav {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          justify-content: flex-end;
+          padding: 0;
+          background: transparent;
+          backdrop-filter: none;
+          pointer-events: none;
+        }
+        .nav-links {
+          display: none;
+        }
+        .nav-toggle {
+          display: inline-flex;
+          border: none;
+          position: fixed !important;
+          top: calc(env(safe-area-inset-top) + 1rem);
+          right: 1rem;
+          transform: none;
+          z-index: 120;
+          pointer-events: auto;
+        }
+        .nav-mobile-menu {
+          position: fixed;
+          top: calc(env(safe-area-inset-top) + 4.8rem);
+          left: 1rem;
+          right: 1rem;
+          z-index: 99;
+          background: rgba(8, 8, 8, 0.96);
+          padding: 0.9rem;
+          display: none;
+          flex-direction: column;
+          gap: 0.35rem;
+          backdrop-filter: blur(8px);
+        }
+        body.nav-open .nav-mobile-menu {
+          display: flex;
+        }
+        .nav-mobile-menu a {
+          display: block;
+          text-decoration: none;
+          color: var(--cream);
+          font-size: 0.74rem;
+          font-weight: 700;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          padding: 0.75rem 0.8rem;
+
+          border-radius: 2px;
+          opacity: 0.85;
+        }
+        .nav-mobile-menu a:hover {
+          opacity: 1;
+        }
+        footer {
+          justify-content: center;
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+      @media (max-width: 860px) {
+        #hero {
+          min-height: 84vh;
+          padding: 4.5rem 5vw 2rem;
+        }
+        .hero-tag {
+          margin-bottom: 2.5rem;
+        }
+        .hero-logo {
+          width: min(140px, 52vw);
+          margin-bottom: 1rem;
+        }
+        .hero-actions {
+          flex-direction: column;
+          align-items: center;
+          margin-top: 1.2rem;
+          margin-bottom: 0.4rem;
+        }
+        .btn-outline {
+          margin-bottom: 0.6rem;
+        }
+        .ticker {
+          animation-duration: 14s;
+        }
+        .btn-primary,
+        .btn-outline {
+          width: 100%;
+          text-align: center;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <!-- NAV -->
+    <nav>
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+        aria-controls="nav-mobile-menu"
+      >
+        <span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#eventos">Eventos</a></li>
+        <li><a href="#vendedores">Ingressos</a></li>
+        <li><a href="#divulgador">Divulgador</a></li>
+        <li><a href="#excursao">Excursão</a></li>
+      </ul>
+    </nav>
+    <div id="nav-mobile-menu" class="nav-mobile-menu">
+      <a href="#eventos">Eventos</a>
+      <a href="#vendedores">Ingressos</a>
+      <a href="#divulgador">Divulgador</a>
+      <a href="#excursao">Excursão</a>
+    </div>
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-bg"></div>
+      <p class="hero-tag">Viçosa – MG &nbsp;·&nbsp; Festas Universitárias</p>
+      <img
+        class="hero-logo"
+        src="/public/logo-autentica.png"
+        alt="Autêntica Fazendinha"
+      />
+      <h1 class="hero-title">
+        <em>As melhores</em><span><em>festas de Viçosa</em></span>
+      </h1>
+      <p class="hero-sub">
+        As noites mais esperadas de Viçosa em uma curadoria de festas com
+        energia jovem e estética premium.
+      </p>
+      <div class="hero-actions">
+        <a class="btn-outline" href="#eventos">Ver próximas festas</a>
+      </div>
+      <div class="hero-scroll">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="ticker-wrap">
+      <div class="ticker">
+        <span>Mega calourada</span><span class="ticker-dot">✦</span>
+        <span>Baile da atlética</span><span class="ticker-dot">✦</span>
+        <span>Mais louco que o Batman</span><span class="ticker-dot">✦</span>
+        <span>Última do período</span><span class="ticker-dot">✦</span>
+        <span>Fazendinha Viçosa</span><span class="ticker-dot">✦</span>
+        <span>Mega calourada</span><span class="ticker-dot">✦</span>
+        <span>Baile da atlética</span><span class="ticker-dot">✦</span>
+        <span>Mais louco que o Batman</span><span class="ticker-dot">✦</span>
+        <span>Última do período</span><span class="ticker-dot">✦</span>
+        <span>Fazendinha Viçosa</span><span class="ticker-dot">✦</span>
+      </div>
+    </div>
+
+    <!-- EVENTOS -->
+    <section id="eventos">
+      <p class="s-label reveal">Agenda</p>
+      <h2 class="s-title reveal"><em>Próximos Eventos</em></h2>
+      <div class="eventos-grid">
+        <div class="evento-card reveal reveal-delay-005">
+          <div class="evento-logo-wrap">
+            <img
+              class="evento-logo"
+              src="/public/festa-das-fotos.png"
+              alt="Ícone Festa das fotos"
+            />
+          </div>
+          <div class="evento-date">25/04</div>
+          <div class="evento-name">Festa das fotos</div>
+          <p class="evento-desc">
+            Uma noite para registrar momentos, reencontros e toda a energia da
+            pista em grande estilo.
+          </p>
+          <span class="btn-soon">Em breve</span>
+        </div>
+
+        <div class="evento-card reveal reveal-delay-01">
+          <div class="evento-logo-wrap">
+            <img
+              class="evento-logo"
+              src="/public/ultima-do-periodo.png"
+              alt="Ícone Última do Período"
+            />
+          </div>
+          <div class="evento-date">03/07</div>
+          <div class="evento-name">Última do período - Universo paralelo</div>
+          <p class="evento-desc">
+            Encerramento do período com atmosfera imersiva, sonoridade intensa e
+            produção de alto nível.
+          </p>
+          <span class="btn-soon">Em breve</span>
+        </div>
+
+        <div class="evento-card reveal reveal-delay-015">
+          <div class="evento-logo-wrap">
+            <img
+              class="evento-logo"
+              src="/public/mais-louco-que-o-batman.png"
+              alt="Ícone Mais louco que o Batman"
+            />
+          </div>
+          <div class="evento-date">21/11</div>
+          <div class="evento-name">Mais louco que o Batman</div>
+          <p class="evento-desc">
+            Uma experiência intensa para fechar o ano com personalidade, música
+            forte e público vibrante.
+          </p>
+          <span class="btn-soon">Em breve</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- VENDEDORES -->
+    <section id="vendedores">
+      <div class="vend-hero reveal">
+        <p class="s-label">Ingressos</p>
+        <h2 class="s-title"><em>Compre com segurança</em></h2>
+        <p>
+          Adquira seu ingresso direto com nossos vendedores oficiais pelo
+          WhatsApp — verificados e autorizados pela Fazendinha.
+        </p>
+      </div>
+      <div class="center-block">
+        <a
+          class="btn-primary btn-primary-vendedores"
+          href="https://linktr.ee/vicosafazendinha?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAdGRleAQmndpleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAaco6Dk9IkDvWZqu0j_J13-li7Ym-Dbc_Yn9Ho_yUMh-ipd_6bUTy2d3NaoYLQ_aem_hOmhGlQ7mb53GCcwGWCoDw"
+          target="_blank"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M13.665 11.16l4.59-4.48h-3.07V4h-2.5v2.68H9.615l4.05 4.48zm-3.33 1.68l-4.59 4.48h3.07V20h2.5v-2.68h3.07l-4.05-4.48zm3.33.42l4.59 4.48h-3.07V20h-2.5v-2.68H9.615l4.05-4.48z"
+            />
+          </svg>
+          Ver vendedores oficiais
+        </a>
+      </div>
+
+      <p class="vend-disclaimer reveal reveal-delay-02">
+        <strong
+          >✦ Vendedores verificados e autorizados pela Fazendinha Viçosa</strong
+        ><br />
+        Todos os vendedores acima são parceiros oficiais. Desconfie de quem não
+        estiver nesta lista.
+      </p>
+    </section>
+
+    <section id="parcerias">
+      <div class="parcerias-grid">
+        <article id="divulgador" class="parceria-card parceria-dark reveal">
+          <p class="s-label">Parcerias</p>
+          <h2 class="s-title"><em>Seja um divulgador</em></h2>
+          <p>
+            Fale direto com nosso time comercial e participe da divulgação
+            oficial dos eventos.
+          </p>
+          <a
+            class="parceria-link parceria-link-dark"
+            href="https://wa.me/5573991696512"
+            target="_blank"
+            rel="noopener noreferrer"
+            >WhatsApp - Ana Araújo</a
+          >
+          <p class="parceria-phone">(73) 99169-6512</p>
+        </article>
+        <article id="excursao" class="parceria-card parceria-dark reveal">
+          <p class="s-label">Operação</p>
+          <h2 class="s-title"><em>Cadastre sua excursão</em></h2>
+          <p>
+            Organiza grupos para as festas? Faça seu cadastro e alinhe condições
+            com nossa equipe.
+          </p>
+          <a
+            class="parceria-link parceria-link-dark"
+            href="https://wa.me/5573981655624"
+            target="_blank"
+            rel="noopener noreferrer"
+            >WhatsApp - Carol Cardoso</a
+          >
+          <p class="parceria-phone">(73) 98165-5624</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato">
+      <div class="contato-wrap">
+        <p class="s-label reveal">Fale com a gente</p>
+        <h2 class="s-title contato-title reveal">
+          Entre em contato para se tornar um parceiro
+        </h2>
+        <p class="reveal reveal-delay-008">
+          Dúvidas sobre ingressos ou parcerias? Resposta rápida garantida.
+        </p>
+        <div class="contato-links reveal reveal-delay-012">
+          <a
+            class="c-link wa"
+            href="https://wa.me/5531984966700"
+            target="_blank"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+              />
+            </svg>
+            WhatsApp
+          </a>
+          <a
+            class="c-link ig"
+            href="https://www.instagram.com/fazendinhavicosa"
+            target="_blank"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+              />
+            </svg>
+            Instagram
+          </a>
+        </div>
+        <p class="contato-info reveal reveal-delay-016">
+          Atendimento oficial: <strong>Ana Laura · (31) 98496-6700</strong>
+        </p>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-logo">
+        <img src="/public/logo-autentica.png" alt="Autêntica Fazendinha" />
+      </div>
+      <span class="footer-copy"
+        >© 2025 Fazendinha Viçosa · Todos os direitos reservados.</span
+      >
+      <a
+        class="footer-ig"
+        href="https://www.instagram.com/fazendinhavicosa"
+        target="_blank"
+        >@fazendinhavicosa</a
+      >
+    </footer>
+
+    <script>
+      const obs = new IntersectionObserver(
+        (e) =>
+          e.forEach((x) => {
+            if (x.isIntersecting) {
+              x.target.classList.add("vis");
+              obs.unobserve(x.target);
+            }
+          }),
+        { threshold: 0.1 },
+      );
+      document.querySelectorAll(".reveal").forEach((r) => obs.observe(r));
+      const navToggle = document.querySelector(".nav-toggle");
+      const navMobileMenu = document.querySelector("#nav-mobile-menu");
+      if (navToggle && navMobileMenu) {
+        const closeMenu = () => {
+          document.body.classList.remove("nav-open");
+          navToggle.setAttribute("aria-expanded", "false");
+          navToggle.setAttribute("aria-label", "Abrir menu");
+        };
+        navToggle.addEventListener("click", () => {
+          const isOpen = document.body.classList.toggle("nav-open");
+          navToggle.setAttribute("aria-expanded", String(isOpen));
+          navToggle.setAttribute(
+            "aria-label",
+            isOpen ? "Fechar menu" : "Abrir menu",
+          );
+        });
+        navMobileMenu.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", closeMenu);
+        });
+        document.addEventListener("click", (event) => {
+          if (!document.body.classList.contains("nav-open")) {
+            return;
+          }
+          const target = event.target;
+          if (target instanceof Element) {
+            if (navToggle.contains(target) || navMobileMenu.contains(target)) {
+              return;
+            }
+          }
+          closeMenu();
+        });
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            closeMenu();
+          }
+        });
+      }
+    </script>
   </body>
 </html>
